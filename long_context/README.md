@@ -23,7 +23,7 @@ We also used the [LongBench](https://github.com/THUDM/LongBench) benchmark to as
 <img src="../assets/InternLM2.5-7B-chat-1M-longbench.png" alt="drawing" width="700"/>
 </p>
 
-## Doc Chat with InternLM2.5-1M
+## File Chat with InternLM2.5-1M
 
 This section provides a brief overview of how to chat with [InternLM2.5-7B-Chat-1M]() using an input document. For optimal performance, especially with extensively long inputs, we highly recommend using [LMDeploy]() for model serving.
 

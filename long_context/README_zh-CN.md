@@ -2,17 +2,17 @@
 
 ## InternLM2.5-7B-Chat-1M 模型介绍
 
-我们推出了 [InternLM2.5-7B-Chat-1M](link)，这是一款能够支持长达 1M token输入的模型。显著提升了模型处理超长文本的能力。
+本文介绍了 [InternLM2.5-7B-Chat-1M](link) ，其是一款输入能够支持长达 1M tokens 的模型。使得模型拥有显著的处理超长文本的能力。
 
-在预训练阶段，我们使用了包含 256K 字符的自然语言语料。为了应对由于数据同质性导致的领域偏移，我们加入了合成数据以维持模型的能力并扩展其上下文理解力。
+在预训练阶段，模型使用了包含长度为 256K tokens 的语料训练。为了应对由于数据同质可能引起的领域偏移问题，在训练过程中引入了合成数据，不仅保持了模型的能力，还增强了其对上下文的理解程度。
 
-我们采用了“*大海捞针*”的方法来评估模型从长文本中检索信息的能力。结果显示，InternLM2.5-7B-Chat-1M 能够在长达 100 万字符的文档中准确地定位关键信息。
+模型经过了“*大海捞针*”方法来评估其从长文本中检索信息的能力。结果显示，InternLM2.5-7B-Chat-1M 能够在长达 1M tokens 的文档中准确地定位关键信息。
 
 <p align="center">
 <img src="../assets/InternLM2.5-7B-chat-1M-needle-test.jpeg" alt="drawing" width="700"/>
 </p>
 
-我们还使用了 [LongBench](https://github.com/THUDM/LongBench) 基准来评估长文档理解能力。我们的模型在测试中达到了最优性能。
+同时，还采用了 [LongBench](https://github.com/THUDM/LongBench) 基准来评估了模型对长文档的理解能力。结果显示，InternLM2.5-7B-Chat-1M 在测试中相较于同类型的模型达到了最佳性能。
 
 <p align="center">
 <img src="../assets/InternLM2.5-7B-chat-1M-longbench.png" alt="drawing" width="700"/>
@@ -20,18 +20,18 @@
 
 ## 使用 InternLM2.5-1M 进行文档聊天
 
-这一部分提供了如何使用 [InternLM2.5-7B-Chat-1M]() 来处理输入文档的简要概述。为了获得最佳性能，特别是在处理极长输入时，我们强烈推荐使用 [LMDeploy]() 进行模型服务。
+下面介绍如何使用 [InternLM2.5-7B-Chat-1M]() 来根据输入文档进行聊天。为了获得最佳性能，尤其是在处理极长输入时，本文强烈推荐使用 [LMDeploy]() 来进行模型部署服务。
 
-### 支持的文档类型
+### 支持的文件类型
 
-目前我们支持 PDF、TXT 和 Markdown 文件，很快将支持更多文件类型！
+当前版本支持 PDF、TXT 和 Markdown 文件，未来将很快支持更多文件类型！
 
-- TXT 和 Markdown 文件：可以直接处理，无需转换。
-- PDF 文件：我们开发了 [Magic-Doc](https://github.com/magicpdf/Magic-Doc) 这个轻量级的开源工具，用于将多种文件类型转换为 Markdown。
+- TXT 和 Markdown 文件：直接读取，无需转换。
+- PDF 文件：为了高效处理PDF文件，这里推出轻量级的开源工具 [Magic-Doc](https://github.com/magicpdf/Magic-Doc) ，其可以将多种文件类型转换为 Markdown 格式的内容。
 
 ### 安装
 
-开始使用前，请安装所需的包：
+开始前，请安装所需的依赖：
 ```bash
 pip install "fairy-doc[cpu]"
 pip install streamlit
@@ -40,9 +40,9 @@ pip install lmdeploy
 
 ### 部署模型
 
-从 [HuggingFace](xxx) 下载我们的模型。
+从 [HuggingFace](xxx) 下载模型。
 
-使用以下命令部署模型。你可以指定 `session-len`（sequence length）和 `server-port`。
+通过以下命令部署模型。用户可以指定 `session-len`（sequence length）和 `server-port` 来定制模型推理。
 
 ```bash
 lmdeploy serve api_server {path_to_hf_model} \
@@ -51,7 +51,7 @@ lmdeploy serve api_server {path_to_hf_model} \
 --server-port 8000
 ```
 
-要进一步增加序列长度，我们建议添加以下参数：
+要进一步增加序列长度，建议添加以下参数：
 `--max-batch-size 1 --cache-max-entry-count 0.7 --tp {num_of_gpus}`
 
 ### 启动 Streamlit demo
@@ -61,19 +61,19 @@ streamlit run long_context/doc_chat_demo.py \
 -- --base_url http://0.0.0.0:8000/v1
 ```
 
-你可以根据需要指定端口。如果在本地运行演示，URL 可以是 `http://0.0.0.0:{your_port}/v1` 或 `http://localhost:{your_port}/v1`。对于云服务器，我们推荐使用 VSCode，可以无缝端口转发。
+用户可以根据需要指定端口。如果在本地运行demo，URL 可以是 `http://0.0.0.0:{your_port}/v1` 或 `http://localhost:{your_port}/v1`。对于云服务器，强烈推荐使用 VSCode，以实现无缝端口转发。
 
-对于长输入，我们建议使用以下参数：
+对于长输入，建议使用以下参数：
 
 - Temperature: 0.05
 - Repetition penalty: 1.02
 
-当然，你可以根据需要在 web UI 中调整这些设置以获得最佳性能。
+当然，用户也可以根据需要在 web UI 中调整这些参数以获得最佳效果。
 
-以下视频演示了效果。
+下面是效果演示视频：
 
 https://github.com/libowen2121/InternLM/assets/19970308/1d7f9b87-d458-4f24-9f7a-437a4da3fa6e
 
 ## 🔜 敬请期待更多
 
-我们将持续优化我们的模型，以更好地理解和推理长文本输入。敬请期待新功能、性能提升和功能扩展，都在即将到来的更新！
+我们将不断优化和更新模型，以便更加精准地理解和分析长文本内容。敬请关注即将发布的更新，届时将带来新功能、显著的性能提升以及更广泛的功能扩展！
