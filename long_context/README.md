@@ -13,14 +13,14 @@ We employed the "*needle in a haystack approach*" to evaluate the model's abilit
 
 
 <p align="center">
-<img src="../assets/InternLM2.5-7B-chat-1M-needle-test.jpg" alt="drawing" width="400"/>
+<img src="../assets/InternLM2.5-7B-chat-1M-needle-test.jpg" alt="drawing" width="700"/>
 </p>
 
 We also used the [LongBench](https://github.com/THUDM/LongBench) benchmark to assess long-document comprehension capabilities. Our model achieved optimal performance in these tests.
 
 
 <p align="center">
-<img src="../assets/InternLM2.5-7B-chat-1M-longbench.png" alt="drawing" width="400"/>
+<img src="../assets/InternLM2.5-7B-chat-1M-longbench.png" alt="drawing" width="700"/>
 </p>
 
 ## Doc Chat with InternLM2.5-1M
