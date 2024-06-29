@@ -37,7 +37,7 @@ def prepare_generation_config():
         max_tokens = st.number_input("Max Tokens", min_value=100, max_value=4096, value=1024)
         top_p = st.number_input("Top P", 0.0, 1.0, 1.0, step=0.01)
         temperature = st.number_input("Temperature", 0.0, 1.0, 0.05, step=0.01)
-        repetition_penalty = st.number_input("Repetition Penalty", 0.8, 1.2, 1.005, step=0.001, format="%0.3f")
+        repetition_penalty = st.number_input("Repetition Penalty", 0.8, 1.2, 1.02, step=0.001, format="%0.3f")
         st.button("Clear Chat History", on_click=on_btn_click)
 
     generation_config = GenerationConfig(
