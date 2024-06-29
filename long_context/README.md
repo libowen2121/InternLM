@@ -2,22 +2,22 @@
 
 English | [简体中文](./README_zh-CN.md)
 
-## InternLM with 1M Context Length
+## InternLM2.5 with 1M Context Length
 
-
+We introduce 
 
 ## Doc Chat with InternLM2.5-1M
 
 This part provides a brief overview of how to chat with [InternLM2.5-7B-Chat-1M]() using an input document. For optimal performance, especially with extensively long inputs, we highly recommend using [LMDeploy]() for model serving.
 
-## Supported Document Types
+### Supported Document Types
 
 Currently, we support PDF, TXT, and Markdown files, with more file types to be supported soon!
 
 - TXT and Markdown files: These can be processed directly without any conversions.
 - PDF files: We have developed [Magic-Doc](https://github.com/magicpdf/Magic-Doc), a lightweight open-source tool, to convert multiple file types to Markdown.
 
-## Installation
+### Installation
 
 To get started, install the required packages:
 ```bash
@@ -26,7 +26,7 @@ pip install streamlit
 pip install lmdeploy
 ```
 
-## Deploy the Model
+### Deploy the Model
 
 Download our model from [link](xxx).
 
@@ -39,7 +39,7 @@ lmdeploy serve api_server {path_to_hf_model} \
 --server-port 8000
 ```
 
-## Launch the Streamlit Demo
+### Launch the Streamlit Demo
 
 ```bash
 streamlit run long_context/doc_chat_demo.py \
@@ -51,7 +51,7 @@ You can specify the port as you need. If you are running the demo locally, the U
 
 The effect is similar to below.
 
-<video src="../assets/doc-chat-demo.mp4" width="800" height="450" controls></video>
+<video src="../assets/doc-chat-demo.mp4" width="800" height="280" controls></video>
 
 
 
