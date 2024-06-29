@@ -4,11 +4,22 @@ English | [简体中文](./README_zh-CN.md)
 
 ## InternLM2.5 with 1M Context Length
 
-We introduce 
+We introduce [InternLM2.5-7B-Chat-1M](link), a model developed to support extensive long inputs of up to 1M tokens.
+This enhancement significantly enhances the model's ability to handle ultra-long text applications.
+
+During pre-training, we utilized natural language corpora with text lengths of 256K tokens. To address the potential domain shift caused by homogeneous data, we supplemented with synthetic data to maintain the model's capabilities while expanding its context.
+
+We employed the "*needle in a haystack approach*" to evaluate the model's ability to retrieve information from long texts. Results show that InternLM2.5-7B-Chat-1M can accurately locate key information in documents up to 1M tokens in length.
+
+![](../assets/InternLM2.5-7B-chat-1M-needle-test.jpg)
+
+We also used the [LongBench](https://github.com/THUDM/LongBench) benchmark to assess long-document comprehension capabilities. Our model achieved optimal performance in these tests.
+
+![](../assets/InternLM2.5-7B-chat-1M-longbench.png)
 
 ## Doc Chat with InternLM2.5-1M
 
-This part provides a brief overview of how to chat with [InternLM2.5-7B-Chat-1M]() using an input document. For optimal performance, especially with extensively long inputs, we highly recommend using [LMDeploy]() for model serving.
+This section provides a brief overview of how to chat with [InternLM2.5-7B-Chat-1M]() using an input document. For optimal performance, especially with extensively long inputs, we highly recommend using [LMDeploy]() for model serving.
 
 ### Supported Document Types
 
@@ -28,7 +39,7 @@ pip install lmdeploy
 
 ### Deploy the Model
 
-Download our model from [link](xxx).
+Download our model from [HuggingFace](xxx).
 
 Deploy the model using the following command. You can specify the `session-len` (sequence length) and `server-port`.
 
@@ -39,6 +50,9 @@ lmdeploy serve api_server {path_to_hf_model} \
 --server-port 8000
 ```
 
+To further enlarge the sequence length, we suggest adding the following arguments:
+`--max-batch-size 1 --cache-max-entry-count 0.7 --tp {num_of_gpus}`
+
 ### Launch the Streamlit Demo
 
 ```bash
@@ -46,12 +60,20 @@ streamlit run long_context/doc_chat_demo.py \
 -- --base_url http://0.0.0.0:8000/v1
 ```
 
-You can specify the port as you need. If you are running the demo locally, the URL could be `http://0.0.0.0:{your_port}/v1` or `http://localhost:{your_port}/v1`. If you are running on a virtual cloud machine, we highly suggest using VSCode for seamless port forwarding.
+You can specify the port as needed. If running the demo locally, the URL could be `http://0.0.0.0:{your_port}/v1` or `http://localhost:{your_port}/v1`. For virtual cloud machines, we recommend using VSCode for seamless port forwarding.
 
+For long inputs, we suggest the following parameters:
 
-The effect is similar to below.
+- Temperature: 0.05
+- Repetition penalty: 1.02
+
+Of course, you can tweak these settings for optimal performance yourself in the web UI.
+
+The effect is demonstrated in the video below.
 
 <video src="../assets/doc-chat-demo.mp4" width="800" height="280" controls></video>
 
+## 🔜 Stay Tuned for More
 
+We are continuously enhancing our models to better understand and reason with extensive long inputs. Expect new features, improved performance, and expanded capabilities in upcoming updates!
 
