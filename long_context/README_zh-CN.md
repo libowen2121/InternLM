@@ -1,18 +1,18 @@
 # InternLM with Long Context
 
-## InternLM2.5-7B-Chat-1M 模型介绍
+## InternLM2.5-7B-Chat-1M
 
-本文介绍了 [InternLM2.5-7B-Chat-1M](link) ，其是一款输入能够支持长达 1M tokens 的模型。使得模型拥有显著的处理超长文本的能力。
+很高兴向大家介绍 [InternLM2.5-7B-Chat-1M](link) ，它拥有处理超长文本的能力，支持长达 1M tokens 的输入。
 
-在预训练阶段，模型使用了包含长度为 256K tokens 的语料训练。为了应对由于数据同质可能引起的领域偏移问题，在训练过程中引入了合成数据，不仅保持了模型的能力，还增强了其对上下文的理解程度。
+在预训练阶段，我们使用了包含长度为 256K tokens 的语料训练。为了应对由于数据同质可能引起的领域偏移问题，我们在训练过程中引入了合成数据，不仅保持了模型的能力，还增强了其对上下文的理解程度。
 
-模型经过了“*大海捞针*”方法来评估其从长文本中检索信息的能力。结果显示，InternLM2.5-7B-Chat-1M 能够在长达 1M tokens 的文档中准确地定位关键信息。
+在“*大海捞针*”实验中，InternLM2.5-7B-Chat-1M 能够在长达 1M tokens 的文档中准确地定位关键信息。
 
 <p align="center">
 <img src="../assets/InternLM2.5-7B-chat-1M-needle-test.jpeg" alt="drawing" width="700"/>
 </p>
 
-同时，还采用了 [LongBench](https://github.com/THUDM/LongBench) 基准来评估了模型对长文档的理解能力。结果显示，InternLM2.5-7B-Chat-1M 在测试中相较于同类型的模型达到了最佳性能。
+同时，我们还采用了 [LongBench](https://github.com/THUDM/LongBench) 基准来评估长文档理解能力。InternLM2.5-7B-Chat-1M 在测试中相较于同类型的模型达到了最佳性能。
 
 <p align="center">
 <img src="../assets/InternLM2.5-7B-chat-1M-longbench.png" alt="drawing" width="700"/>
@@ -20,14 +20,14 @@
 
 ## 使用 InternLM2.5-1M 进行文档聊天
 
-下面介绍如何使用 [InternLM2.5-7B-Chat-1M]() 来根据输入文档进行聊天。为了获得最佳性能，尤其是在处理极长输入时，本文强烈推荐使用 [LMDeploy]() 来进行模型部署服务。
+下面介绍如何使用 [InternLM2.5-7B-Chat-1M]() 来根据输入文档进行聊天。为了获得最佳性能，尤其是在处理长文本输入时，我们推荐使用 [LMDeploy]() 来进行模型部署。
 
 ### 支持的文件类型
 
-当前版本支持 PDF、TXT 和 Markdown 文件，未来将很快支持更多文件类型！
+当前版本支持 PDF、TXT 和 Markdown 三类文件。未来我们将很快支持更多文件类型！
 
 - TXT 和 Markdown 文件：直接读取，无需转换。
-- PDF 文件：为了高效处理PDF文件，这里推出轻量级的开源工具 [Magic-Doc](https://github.com/magicpdf/Magic-Doc) ，其可以将多种文件类型转换为 Markdown 格式的内容。
+- PDF 文件：为了高效处理 PDF 文件，我们推出了轻量级的开源工具 [Magic-Doc](https://github.com/magicpdf/Magic-Doc) ，其可以将多种文件类型转换为 Markdown 格式。
 
 ### 安装
 
@@ -61,9 +61,9 @@ streamlit run long_context/doc_chat_demo.py \
 -- --base_url http://0.0.0.0:8000/v1
 ```
 
-用户可以根据需要指定端口。如果在本地运行demo，URL 可以是 `http://0.0.0.0:{your_port}/v1` 或 `http://localhost:{your_port}/v1`。对于云服务器，强烈推荐使用 VSCode，以实现无缝端口转发。
+用户可以根据需要指定端口。如果在本地运行 demo，URL 可以是 `http://0.0.0.0:{your_port}/v1` 或 `http://localhost:{your_port}/v1`。对于云服务器，我们推荐使用 VSCode 来启动 demo，以实现无缝端口转发。
 
-对于长输入，建议使用以下参数：
+对于长输入，我们建议使用以下参数：
 
 - Temperature: 0.05
 - Repetition penalty: 1.02
@@ -76,4 +76,4 @@ https://github.com/libowen2121/InternLM/assets/19970308/1d7f9b87-d458-4f24-9f7a-
 
 ## 🔜 敬请期待更多
 
-我们将不断优化和更新模型，以便更加精准地理解和分析长文本内容。敬请关注即将发布的更新，届时将带来新功能、显著的性能提升以及更广泛的功能扩展！
+我们将不断优化和更新长文本模型，以提升其在长文本上的理解和分析能力。敬请关注！
