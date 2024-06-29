@@ -11,11 +11,17 @@ During pre-training, we utilized natural language corpora with text lengths of 2
 
 We employed the "*needle in a haystack approach*" to evaluate the model's ability to retrieve information from long texts. Results show that InternLM2.5-7B-Chat-1M can accurately locate key information in documents up to 1M tokens in length.
 
-![](../assets/InternLM2.5-7B-chat-1M-needle-test.jpg)
+
+<p align="center">
+<img src="../assets/InternLM2.5-7B-chat-1M-needle-test.jpg" alt="drawing" width="400"/>
+</p>
 
 We also used the [LongBench](https://github.com/THUDM/LongBench) benchmark to assess long-document comprehension capabilities. Our model achieved optimal performance in these tests.
 
-![](../assets/InternLM2.5-7B-chat-1M-longbench.png)
+
+<p align="center">
+<img src="../assets/InternLM2.5-7B-chat-1M-longbench.png" alt="drawing" width="400"/>
+</p>
 
 ## Doc Chat with InternLM2.5-1M
 
