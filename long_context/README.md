@@ -51,4 +51,6 @@ You can specify the port as you need. If you are running the demo locally, the U
 
 The effect is similar to below.
 
+https://github.com/libowen2121/InternLM/assets/19970308/096bb4f9-7c29-428e-a335-7b18f101f43f
+
 
